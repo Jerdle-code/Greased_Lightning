@@ -6,7 +6,7 @@ then echo "Run this as root"
 exit 1
 fi
 echo "Replacing pacman.conf"
-cat '[archlinuxfr]
+echo '[archlinuxfr]
 SigLevel = Never
 Server = http://repo.archlinux.fr/$arch' >> /etc/pacman.conf
 echo "Enabling AUR"
