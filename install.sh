@@ -17,12 +17,12 @@ echo " 2 = light app suite "
 echo " 3 = both "
 read choice
 case $choice in
-1) yaourt -Syu pcmanfm lxappearance cairo-compmgr wbar xfce4-panel mint-backgrounds-qiana conky openbox obconf lxappearance-obconf gmrun obkey --insecure
-systemctl enable lxdm
+1) yaourt -Syu pcmanfm lxappearance cairo-compmgr wbar xfce4-panel mint-backgrounds-qiana conky openbox obconf lxappearance-obconf gmrun obkey sddm --insecure
+systemctl enable sddm
 echo "Log into Openbox";;
 2) yaourt -Syu lxappearance abiword deadbeef midori evince gimp gnumeric grsync liferea lyx osmo pidgin vlc transmission-gtk sylpheed xfburn xfce4-taskmanager --insecure ;;
-3) yaourt -Syu lxappearance abiword deadbeef midori evince gimp gnumeric grsync liferea lyx osmo pidgin vlc transmission-gtk sylpheed xfburn xfce4-taskmanager pcmanfm gmrun obkey cairo-compmgr wbar xfce4-panel mint-backgrounds-qiana conky openbox obconf --insecure
-systemctl enable lxdm
+3) yaourt -Syu lxappearance sddm abiword deadbeef midori evince gimp gnumeric grsync liferea lyx osmo pidgin vlc transmission-gtk sylpheed xfburn xfce4-taskmanager pcmanfm gmrun obkey cairo-compmgr wbar xfce4-panel mint-backgrounds-qiana conky openbox obconf --insecure
+systemctl enable sddm
 echo "Log into Openbox" ;;
 *) exit 2
 esac
