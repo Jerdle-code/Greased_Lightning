@@ -1,5 +1,5 @@
 #! /bin/bash
-echo "This is the Greased Lightning Installer. It requires a working Arch system."
+echo "This is the Iced Balloon Installer. It requires a working Arch system."
 echo ""
 if [[ $(id -u) -ne 0 ]]
 then echo "Run this as root"
