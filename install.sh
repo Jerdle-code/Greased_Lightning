@@ -6,7 +6,7 @@ start () {
 	exit 1
 	fi
 	whiptail --infobox "Replacing pacman.conf" 10 40
-	grep '[archlinuxfr]' pacman.conf > /dev/null || echo '[archlinuxfr]
+	grep '[archlinuxfr]' /etc/pacman.conf > /dev/null || echo '[archlinuxfr]
 SigLevel = Never
 Server = http://repo.archlinux.fr/$arch' >> /etc/pacman.conf
 	whiptail --infobox "Enabling AUR" 10 40
@@ -23,9 +23,10 @@ install_apps() {
 	yaourt -Syu lxappearance abiword deadbeef midori evince gimp gnumeric grsync liferea lyx osmo pidgin vlc transmission-gtk sylpheed xfburn xfce4-taskmanager --insecure >/dev/null 2>/dev/null
 }
 start
-choices=$(whiptail --checklist "Choose programs:" 10 40 2 \
+whiptail --checklist --separate-output "Choose programs:" 10 40 2 \
         1 "Desktop" on \
-        2 "App suite" on
-3>&1 1>&2 2>&3)
-echo $choices | grep 1 > /dev/null && install_desktop
-echo $choices | grep 2 > /dev/null && install_apps
+        2 "App suite" on 2>/tmp/programs
+sort -r /tmp/programs -o /tmp/programs
+grep 2 /tmp/programs >/dev/null && install_apps
+grep 1 /tmp/programs >/dev/null && install_desktop
+rm /tmp/programs
