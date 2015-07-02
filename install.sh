@@ -27,7 +27,7 @@ foo=1
 }
 foo=0
 start
-while [ foo -eq 0 ]
+while [ $foo -eq 0 ]
 do echo "Choose version"
 echo " 1 = Openbox-based desktop "
 echo " 2 = light app suite "
