@@ -1,5 +1,6 @@
 #! /bin/bash
 start () {
+	useradd yaourt
 	whiptail --msgbox "This is the Iced Balloon Installer. It requires a working Arch system." 10 40
 	if [[ $(id -u) -ne 0 ]]
 	then whiptail --msgbox "Run this as root" 10 40
@@ -14,13 +15,13 @@ Server = http://repo.archlinux.fr/$arch' >> /etc/pacman.conf
 } 
 install_desktop() {
 	whiptail --infobox "Installing lightweight desktop..." 10 40
-	yaourt -Syu spacefm lxappearance cairo-compmgr wbar xfce4-panel mint-backgrounds-qiana conky openbox obconf lxappearance-obconf gmrun obkey sddm --insecure >/dev/null 2>/dev/null
+	su yaourt -c 'bash -c "yaourt -Syu spacefm lxappearance cairo-compmgr wbar xfce4-panel mint-backgrounds-qiana conky openbox obconf lxappearance-obconf gmrun obkey sddm --insecure >/dev/null 2>/dev/null"'
 	systemctl enable sddm
 	whiptail --msgbox "Log into Openbox" 10 40
 }
 install_apps() {
 	whiptail --infobox "Installing lightweight apps..." 10 40
-	yaourt -Syu lxappearance abiword deadbeef midori evince gimp gnumeric grsync liferea lyx osmo pidgin vlc transmission-gtk sylpheed xfburn xfce4-taskmanager --insecure >/dev/null 2>/dev/null
+	su yaourt -c 'bash -c "yaourt -Syu lxappearance abiword deadbeef midori evince gimp gnumeric grsync liferea lyx osmo pidgin vlc transmission-gtk sylpheed xfburn xfce4-taskmanager --insecure >/dev/null 2>/dev/null"'
 }
 start
 whiptail --checklist --separate-output "Choose programs:" 10 40 2 \
@@ -30,3 +31,4 @@ sort -r /tmp/programs -o /tmp/programs
 grep 2 /tmp/programs >/dev/null && install_apps
 grep 1 /tmp/programs >/dev/null && install_desktop
 rm /tmp/programs
+userdel yaourt
