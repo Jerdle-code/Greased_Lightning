@@ -1,7 +1,7 @@
 #! /bin/bash
 start () {
 	useradd yaourt
-	whiptail --msgbox "This is the Iced Balloon Installer. It requires a working Arch system." 10 40
+	whiptail --msgbox "This is the Greased Lightning Installer. It requires a working Arch system." 10 40
 	if [[ $(id -u) -ne 0 ]]
 	then whiptail --msgbox "Run this as root" 10 40
 	exit 1
