@@ -11,7 +11,7 @@ start () {
 SigLevel = Never
 Server = http://repo.archlinux.fr/$arch' >> /etc/pacman.conf
 	whiptail --infobox "Enabling AUR" 10 40
-	pacman -Syyu base-devel yaourt
+	pacman -Syyu base-devel yaourt > /dev/null 2>/dev/null
 } 
 install_desktop() {
 	whiptail --infobox "Installing lightweight desktop..." 10 40
