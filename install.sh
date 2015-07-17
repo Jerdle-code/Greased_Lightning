@@ -11,17 +11,17 @@ start () {
 SigLevel = Never
 Server = http://repo.archlinux.fr/$arch' >> /etc/pacman.conf
 	whiptail --infobox "Enabling AUR" 10 40
-	pacman -Syyu base-devel yaourt > /dev/null 2>/dev/null
+	pacman -Sy base-devel yaourt
 } 
 install_desktop() {
 	whiptail --infobox "Installing lightweight desktop..." 10 40
-	su yaourt -c 'bash -c "yaourt -Syu spacefm lxappearance cairo-compmgr wbar xfce4-panel mint-backgrounds-qiana conky openbox obconf lxappearance-obconf gmrun obkey sddm --insecure >/dev/null 2>/dev/null"'
+	su yaourt -c 'bash -c "yaourt -S spacefm lxappearance cairo-compmgr wbar xfce4-panel mint-backgrounds-qiana conky openbox obconf lxappearance-obconf gmrun obkey sddm --insecure"'
 	systemctl enable sddm
 	whiptail --msgbox "Log into Openbox" 10 40
 }
 install_apps() {
 	whiptail --infobox "Installing lightweight apps..." 10 40
-	su yaourt -c 'bash -c "yaourt -Syu lxappearance abiword deadbeef midori evince gimp gnumeric grsync liferea lyx osmo pidgin vlc transmission-gtk sylpheed xfburn xfce4-taskmanager --insecure >/dev/null 2>/dev/null"'
+	su yaourt -c 'bash -c "yaourt -S lxappearance abiword deadbeef midori evince gimp gnumeric grsync liferea lyx osmo pidgin vlc transmission-gtk  sylpheed xfburn xfce4-taskmanager --insecure"'
 }
 start
 whiptail --checklist --separate-output "Choose programs:" 10 40 2 \
